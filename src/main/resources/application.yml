@@ -1,0 +1,48 @@
+---
+server:
+  port: 1234
+  contextPath: /
+  http:
+    encoding:
+      charset: UTF-8
+---
+google:
+  app:
+    name: Google Sheets v4 demo
+  spreadsheet:
+    id: 1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg
+    sheet:
+      name: Sheet1!A1:B2
+---
+spring:
+  profiles: local, default
+datasource:
+  sampleapp:
+    url: jdbc:h2:~/test
+    username: SA
+    password:
+    driverClassName: org.h2.Driver
+    defaultSchema:
+    maxPoolSize: 10
+    hibernate:
+      hbm2ddl.method: create-drop
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.H2Dialect
+---
+spring:
+  profiles: prod
+datasource:
+  sampleapp:
+    url: jdbc:mysql://localhost:3306/websystique
+    username: myuser
+    password: mypassword
+    driverClassName: com.mysql.jdbc.Driver
+    defaultSchema:
+    maxPoolSize: 20
+    hibernate:
+      hbm2ddl.method: update
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
+
